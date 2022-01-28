@@ -1,0 +1,29 @@
+// set theme color variables
+@import 'theme';
+
+// set theme colors for more theme colors
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "light": $light,
+  "dark": $dark,
+  "active": $active,
+  "grey": $grey,
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger
+) !default;
+
+// texts
+$font-size-base: 1.1rem;
+$font-family-sans-serif: 'Poppins', sans-serif;
+
+// buttons
+$btn-padding-x-sm: 16px;
+$btn-padding-y-sm: 5px;
+$btn-padding-x: 18px;
+$btn-padding-y: 7px;
+$btn-padding-x-lg: 24px;
+$btn-padding-y-lg: 9px;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
