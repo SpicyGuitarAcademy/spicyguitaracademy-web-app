@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+
+import './scss/bootstrap.custom.scss';
+import './scss/bootstrap.extras.scss';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 ReactDOM.render(
   <React.StrictMode>
