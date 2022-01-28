@@ -7,3 +7,9 @@ test('renders learn react link', () => {
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+test('learn react should be a link', () => {
+  render(<App />);
+  const text = screen.getByText(/learn react/i);
+  expect(text).toHaveAttribute('href', 'https://reactjs.org')
+})
