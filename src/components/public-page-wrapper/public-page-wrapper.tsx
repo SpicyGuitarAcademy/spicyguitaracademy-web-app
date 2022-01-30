@@ -4,12 +4,18 @@ import './style.scss'
 export const PublicPageWrapper = ({ children, bgImage }: { children: JSX.Element, bgImage?: string }) => {
 
   return (
-    <div className={`vh-100 vw-100 bg-light __page_wrapper ${bgImage ?? ''}`}>
-      <header className='container py-lg-3 mb-5'>
-        <img src={SpicyGuitarLogo} alt="Spicy Guitar Academy" className='__logo' />
-      </header>
-      <div className='container h-lg-50'>
-        {children}
+    <div className='bg-light'>
+      <div className={`vh-100 w-100 __page_wrapper ${bgImage ?? ''}`}>
+        <header className='vh-lg-20 w-100'>
+          <div className='container h-100 w-100 d-flex justify-content-start align-items-center'>
+            <img src={SpicyGuitarLogo} alt="Spicy Guitar Academy" className='__logo' />
+          </div>
+        </header>
+
+        <div className='w-100'>
+          {children}
+        </div>
+
       </div>
     </div>
   )
