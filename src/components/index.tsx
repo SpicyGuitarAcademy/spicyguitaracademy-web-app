@@ -1,0 +1,1 @@
+export { PublicPageWrapper } from './public-page-wrapper/public-page-wrapper'

@@ -1,0 +1,12 @@
+.__page_wrapper {
+  &.__bg1 {
+    // background-image: url("../../assets/bg1.jpg");
+    background-image: url("../../assets/welcome_page_desktop_bg.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  header>img.__logo {
+    width: 75px;
+  }
+}
