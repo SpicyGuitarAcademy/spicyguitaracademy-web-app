@@ -4,7 +4,7 @@ import { PublicPageWrapper } from "../../../components"
 export const RegisterPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
-
+    e.preventDefault()
   }
 
   return (
@@ -64,7 +64,7 @@ export const RegisterPage = () => {
                 </div>
 
                 <div className="mb-lg-3 d-flex flex-column">
-                  <button className="btn btn-lg btn-primary form-control mb-3">Create Account</button>
+                  <button type="submit" className="btn btn-lg btn-primary form-control mb-3">Create Account</button>
                   <span className="align-self-center">Already have an account? <Link to='/login'>Login</Link>.</span>
                 </div>
 
