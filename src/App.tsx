@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { LandingPage, LoadingPage, WelcomePage } from './pages/public';
+import { LandingPage, LoadingPage, RegisterPage, WelcomePage } from './pages/public';
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
         <Route exact path='/' children={LandingPage} />
         <Route exact path='/welcome' children={WelcomePage} />
         <Route exact path='/loading' children={LoadingPage} />
+        <Route exact path='/register' children={RegisterPage} />
       </Switch>
     </BrowserRouter>
   );
