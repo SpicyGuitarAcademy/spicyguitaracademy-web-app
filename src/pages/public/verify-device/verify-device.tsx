@@ -1,3 +1,5 @@
+import { AlertCircle } from "react-feather"
+import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 
 export const VerifyDevice = () => {
@@ -22,14 +24,19 @@ export const VerifyDevice = () => {
                 <div className="mb-lg-4">
 
                   <div className="form-floating mb-lg-3">
-                    <input type="text" maxLength={6} id="authToken" className="form-control" placeholder="123456" />
+                    <input type="text" maxLength={6} id="authToken" className="form-control mb-lg-2" placeholder="123456" />
                     <label htmlFor="authToken">Authentication Token</label>
+                    <small className="text-danger"><AlertCircle size={'18px'} /> If you don't find the mail in your inbox, please check your Spam or Junk folder.</small>
                   </div>
 
                 </div>
 
                 <div className="mb-lg-3">
                   <button type="submit" className="btn btn-lg btn-primary form-control mb-3">Verify</button>
+                  <div className="d-flex justify-content-between">
+                    <span className="">Didn't get the code? <span className="text-decoration-underline cursor-pointer" onClick={() => { }}>Send again</span></span>
+                    <span className="">Need assistance? <Link to='/contact-us'>Contact us</Link></span>
+                  </div>
                 </div>
 
               </div>
