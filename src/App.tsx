@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { ContactUs, ForgotPassword, LandingPage, LoadingPage, LoginPage, RegisterPage, VerifyAccount, VerifyDevice, WelcomePage } from './pages/public';
+import { ContactUs, ForgotPassword, LandingPage, LoadingPage, LoginPage, ReadyToPlay, RegisterPage, VerifyAccount, VerifyDevice, WelcomePage } from './pages/public';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route exact path='/verify-account' children={VerifyAccount} />
         <Route exact path='/forgot-password' children={ForgotPassword} />
         <Route exact path='/contact-us' children={ContactUs} />
+        <Route exact path='/ready-to-play' children={ReadyToPlay} />
       </Switch>
     </BrowserRouter>
   );
