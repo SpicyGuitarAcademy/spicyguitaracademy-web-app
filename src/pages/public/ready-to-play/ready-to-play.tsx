@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 
-export const ReadyToPlay = () => {
+export const ReadyToPlay: React.FC<{}> = () => {
   return (
     <PublicPageWrapper bgImage='__bg2'>
       <div className='vh-lg-60 w-100'>

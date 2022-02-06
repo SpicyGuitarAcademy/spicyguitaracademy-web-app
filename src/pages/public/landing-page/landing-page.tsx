@@ -1,6 +1,6 @@
 import SpicyGuitarLogo from '../../../assets/spicyguitaracademy_logo.svg';
 
-export const LandingPage = () => {
+export const LandingPage: React.FC<{}> = () => {
   return (
     <div className='bg-light'>
       <div className='vh-100 vw-100 d-flex justify-content-center align-items-center'>

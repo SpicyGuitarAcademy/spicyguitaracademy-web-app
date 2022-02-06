@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 
-export const ContactUs = () => {
+export const ContactUs: React.FC<{}> = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

@@ -1,6 +1,6 @@
 import { PublicPageWrapper } from "../../../components"
 
-export const ForgotPassword = () => {
+export const ForgotPassword: React.FC<{}> = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

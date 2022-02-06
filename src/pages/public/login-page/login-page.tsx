@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 
-export const LoginPage = () => {
+interface LoginProps {
+  children: JSX.Element
+}
+
+export const LoginPage: React.FC<LoginProps> = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

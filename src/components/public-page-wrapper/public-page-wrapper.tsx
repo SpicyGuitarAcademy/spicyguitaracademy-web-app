@@ -2,7 +2,12 @@ import { Link } from 'react-router-dom';
 import SpicyGuitarLogo from '../../assets/spicyguitaracademy_logo.svg';
 import './style.scss'
 
-export const PublicPageWrapper = ({ children, bgImage }: { children: JSX.Element, bgImage?: string }) => {
+interface PublicPageWrapperProps {
+  children: JSX.Element
+  bgImage?: string
+}
+
+export const PublicPageWrapper: React.FC<PublicPageWrapperProps> = ({ children, bgImage }) => {
 
   return (
     <div className='bg-light'>

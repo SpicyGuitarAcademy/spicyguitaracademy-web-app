@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 import AppHand from '../../../assets/app_hand.svg'
 
-export const WelcomePage = () => {
+export const WelcomePage: React.FC<{}> = () => {
 
   return (
     <PublicPageWrapper>

@@ -2,7 +2,7 @@ import { AlertCircle } from "react-feather"
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 
-export const VerifyDevice = () => {
+export const VerifyDevice: React.FC<{}> = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

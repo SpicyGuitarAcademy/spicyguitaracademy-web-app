@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 
-export const WelcomePage = () => {
+export const WelcomePage: React.FC<{}> = () => {
   return (
     <PublicPageWrapper bgImage='__bg1'>
       <div className='h-60 w-100 d-flex justify-content-center align-items-center'>
