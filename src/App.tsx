@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { ContactUs, ForgotPassword, LandingPage, LoadingPage, LoginPage, ReadyToPlay, RegisterPage, VerifyAccount, VerifyDevice, WelcomePage } from './pages/public';
+import { WelcomePage as StudentWelcomePage } from './pages/authenticated/index'
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Route exact path='/forgot-password' children={ForgotPassword} />
         <Route exact path='/contact-us' children={ContactUs} />
         <Route exact path='/ready-to-play' children={ReadyToPlay} />
+
+        <Route exact path='/welcomee' children={StudentWelcomePage} />
+
       </Switch>
     </BrowserRouter>
   );
