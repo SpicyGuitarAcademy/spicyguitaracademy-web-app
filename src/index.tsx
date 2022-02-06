@@ -5,8 +5,8 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import './scss/bootstrap.custom.scss';
-import './scss/bootstrap.extras.scss';
+import './theme/bootstrap.custom.scss';
+import './theme/bootstrap.extras.scss';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 ReactDOM.render(
