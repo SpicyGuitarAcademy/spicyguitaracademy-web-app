@@ -1,14 +1,18 @@
-import SpicyGuitarLogo from '../../../assets/spicyguitaracademy_logo.svg';
+import { Link } from "react-router-dom"
+import { PublicPageWrapper } from "../../../components"
 
 export const LandingPage: React.FC<{}> = () => {
   return (
-    <div className='bg-light'>
-      <div className='vh-100 vw-100 d-flex justify-content-center align-items-center'>
+    <PublicPageWrapper bgImage='__bg1'>
+      <div className='h-60 w-100 d-flex justify-content-center align-items-center'>
         <div className='d-flex flex-column justify-content-center align-items-center'>
-          <img src={SpicyGuitarLogo} alt="Spicy Guitar Academy" className='mb-lg-3' />
-          <p className='h3 text-primary'>Spicy Guitar Academy</p>
+          <p className='h1 text-cream mb-lg-5 fw-bold'>Hi, Welcome to Spicy Guitar Academy.</p>
+          <div>
+            <Link className="btn btn-lg mx-lg-2 btn-primary" to='/register'>Create account</Link>
+            <Link className="btn btn-lg mx-lg-2 btn-outline-light px-lg-5" to='/login'>Login</Link>
+          </div>
         </div>
       </div>
-    </div>
+    </PublicPageWrapper>
   )
-};
+}
