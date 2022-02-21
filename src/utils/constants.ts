@@ -1,0 +1,1 @@
+export const baseUrl = "http://localhost/sga_web"
