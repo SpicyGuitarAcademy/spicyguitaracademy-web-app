@@ -1,18 +1,30 @@
-import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { ContactUs, ForgotPassword, LandingPage, LoadingPage, LoginPage, ReadyToPlay, RegisterPage, VerifyAccount, VerifyDevice, WelcomePage } from './pages/public';
+import { ContactUs, ForgotPassword, LandingPage, LoadingPage, LoginPage, ReadyToPlay, RegisterPage, VerifyAccount, VerifyDevice } from './pages/public';
 import { WelcomePage as StudentWelcomePage } from './pages/authenticated'
-import { ConfirmModal, ToastWrapper } from './components';
+import { ConfirmModal, LoadingModal, ToastWrapper } from './components';
+import { useLoadingModalStore } from './store/loading-modal';
+import { useEffect } from 'react';
 
 function App() {
+
+  const { loading, unload } = useLoadingModalStore()
+
+  useEffect(() => {
+    loading("Booting App...")
+    setTimeout(() => {
+      unload()
+    }, 10000);
+  }, [loading, unload])
+
+
   return (
     <>
       <ToastWrapper />
       <ConfirmModal />
+      <LoadingModal />
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={LandingPage} />
-          <Route exact path='/welcome' component={WelcomePage} />
           <Route exact path='/loading' component={LoadingPage} />
           <Route exact path='/register' component={RegisterPage} />
           <Route exact path='/login' component={LoginPage} />
@@ -23,7 +35,7 @@ function App() {
           <Route exact path='/ready-to-play' component={ReadyToPlay} />
 
           {/* Authenticated pages */}
-          <Route exact path='/welcomee' component={StudentWelcomePage} />
+          <Route exact path='/welcome' component={StudentWelcomePage} />
 
         </Switch>
       </BrowserRouter>
