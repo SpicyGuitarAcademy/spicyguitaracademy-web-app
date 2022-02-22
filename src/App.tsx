@@ -7,15 +7,14 @@ import { useEffect } from 'react';
 
 function App() {
 
-  const { loading, unload } = useLoadingModalStore()
+  const { setLoading } = useLoadingModalStore()
 
   useEffect(() => {
-    loading("Booting App...")
+    setLoading(true, "Booting App...")
     setTimeout(() => {
-      unload()
-    }, 10000);
-  }, [loading, unload])
-
+      setLoading(false)
+    }, 2000);
+  }, [setLoading])
 
   return (
     <>
