@@ -1,9 +1,37 @@
+import { useState } from "react"
+import { useHistory } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
+import { useAuthStore } from "../../../store/auth"
+import { useToastStore } from "../../../store/toast"
+import { stateToFormData } from "../../../utils"
+
+type forgetPasswordCredentials = {
+  email: string
+}
 
 export const ForgotPassword: React.FC<{}> = () => {
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [credentials, setCredentials] = useState<forgetPasswordCredentials>({
+    email: ''
+  })
+  const { forgotPassword } = useAuthStore()
+  const { toast } = useToastStore()
+  const { replace } = useHistory()
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    const forgetPasswordCredentials = stateToFormData(credentials)
+    forgotPassword(forgetPasswordCredentials)
+      .then(resp => {
+        if (resp?.status) {
+          toast(resp.message)
+          
+          replace('/verify-account')
+        } else {
+          toast(resp.message, undefined, 'danger')
+        }
+      })
   }
 
   return (
@@ -22,7 +50,7 @@ export const ForgotPassword: React.FC<{}> = () => {
                 <div className="mb-lg-4">
 
                   <div className="form-floating mb-lg-3">
-                    <input type="email" id="email" className="form-control" placeholder="johnadeniyi@mail.com" />
+                    <input onChange={(e) => setCredentials({ email: e.target.value })} type="email" id="email" className="form-control" placeholder="johnadeniyi@mail.com" />
                     <label htmlFor="email">Email address</label>
                   </div>
 
