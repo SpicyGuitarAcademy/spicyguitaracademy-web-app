@@ -1,10 +1,35 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
+import { useLoadingModalStore } from "../../../store/loading-modal"
+import { useToastStore } from "../../../store/toast"
+import { request, stateToFormData } from "../../../utils"
+
+type contactUsData = {
+  email: string
+  subject: string
+  message: string
+}
 
 export const ContactUs: React.FC<{}> = () => {
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { toast } = useToastStore()
+  const { setLoading } = useLoadingModalStore()
+  const [form, setForm] = useState<contactUsData>({
+    email: '',
+    subject: '',
+    message: ''
+  })
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    setLoading(true)
+    request('/api/contactus', 'POST', stateToFormData(form))
+      .then(resp => {
+        setLoading(false)
+        toast(resp?.message, undefined, resp?.status ? 'success' : 'danger')
+      })
   }
 
   return (
@@ -23,19 +48,24 @@ export const ContactUs: React.FC<{}> = () => {
                 <div className="mb-lg-4">
 
                   <div className="form-floating mb-lg-3">
-                    <input type="text" id="subject" className="form-control" placeholder="I have an inquiry" />
+                    <input onChange={(e) => setForm({ ...form, email: e.target.value })} type="email" id="email" className="form-control" placeholder="johnadeniyi@mail.com" />
+                    <label htmlFor="email">Email address</label>
+                  </div>
+
+                  <div className="form-floating mb-lg-3">
+                    <input onChange={(e) => setForm({ ...form, subject: e.target.value })} type="text" id="subject" className="form-control" placeholder="I have an inquiry" />
                     <label htmlFor="subject">Subject</label>
                   </div>
 
                   <div className="form-floating mb-lg-3">
-                    <textarea id="message" style={{ height: '100px' }} className="form-control" placeholder="I have an inquiry about..."></textarea>
+                    <textarea onChange={(e) => setForm({ ...form, message: e.target.value })} id="message" style={{ height: '100px' }} className="form-control" placeholder="I have an inquiry about..."></textarea>
                     <label htmlFor="message">Message</label>
                   </div>
 
                 </div>
 
                 <div className="mb-lg-3">
-                  <button type="submit" className="btn btn-lg btn-primary form-control mb-3">Login</button>
+                  <button type="submit" className="btn btn-lg btn-primary form-control mb-3">Send Message</button>
                   <div className="text-center">
                     You can also check our <Link to='/faqs'>FAQs</Link>
                   </div>
