@@ -5,6 +5,7 @@ import { PublicPageWrapper } from "../../../components"
 import { useAuthStore } from "../../../store/auth"
 import { useLoadingModalStore } from "../../../store/loading-modal"
 import { useToastStore } from "../../../store/toast"
+import { stateToFormData } from "../../../utils"
 
 type regsterCredentials = {
   firstname: string,
@@ -45,10 +46,7 @@ export const RegisterPage: React.FC<{}> = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const registerCredentials = new FormData()
-    Object.entries(credentials).forEach(([key, value]) => {
-      registerCredentials.append(key, value)
-    })
+    const registerCredentials = stateToFormData(credentials)
 
     if (!acceptTC) {
       toast('Please accept Terms and Conditions.', undefined, 'danger')
@@ -68,7 +66,6 @@ export const RegisterPage: React.FC<{}> = () => {
 
         toast(resp.message)
         replace('/login')
-
       })
 
   }
@@ -138,9 +135,9 @@ export const RegisterPage: React.FC<{}> = () => {
                     <label htmlFor="inviteCode">Invite code (optional)</label>
                   </div>
 
-                  <div className="mb-lg-3">
+                  <div className="mb-lg-3 d-flex justify-content-start align-items-start gap-2">
                     <input onChange={(e) => setAcceptTC(e.target.checked)} type="checkbox" id="agreedToTermsAndConditions" className="form-check-input text-primary" />
-                    <label htmlFor="agreedToTermsAndConditions" className="ms-lg-2">I have carefully read and agreed to the <a target='__blank' className="text-primary" href='https://spicyguitaracademy.com/terms'>Terms and Conditions</a></label>
+                    <label htmlFor="agreedToTermsAndConditions" className="">I have carefully read and agreed to the <a target='__blank' className="text-primary" href='https://spicyguitaracademy.com/terms'>Terms and Conditions</a></label>
                   </div>
                 </div>
 

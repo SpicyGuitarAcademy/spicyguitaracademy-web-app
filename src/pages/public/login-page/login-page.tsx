@@ -1,14 +1,55 @@
-import { Link } from "react-router-dom"
+import { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
+import { useAuthStore } from "../../../store/auth"
+import { useLoadingModalStore } from "../../../store/loading-modal"
+import { useToastStore } from "../../../store/toast"
+import { stateToFormData } from "../../../utils"
 
-interface LoginProps {
-  children: JSX.Element
+type loginCredentials = {
+  email: string,
+  password: string
 }
 
-export const LoginPage: React.FC<LoginProps> = () => {
+export const LoginPage: React.FC<{}> = () => {
+
+  const { signIn } = useAuthStore()
+  const { setLoading } = useLoadingModalStore()
+  const { toast } = useToastStore()
+  const { push } = useHistory()
+  const [credentials, setCredentials] = useState<loginCredentials>({
+    email: '',
+    password: ''
+  })
+  const [errors, setErrors] = useState<loginCredentials>({
+    email: '',
+    password: ''
+  })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    const loginCredentials = stateToFormData(credentials)
+    setLoading(true)
+
+    signIn(loginCredentials)
+      .then(resp => {
+        setLoading(false)
+
+        if (!resp.status) {
+          setErrors(resp.data)
+          toast(resp.message, undefined, 'danger')
+          return
+        }
+
+        toast(resp.message)
+        push('/dashboard')
+      })
+  }
+
+  const handleChange = (input: string, value: string) => {
+    setCredentials({ ...credentials, [input]: value })
+    setErrors({ ...errors, [input]: '' })
   }
 
   return (
@@ -27,12 +68,12 @@ export const LoginPage: React.FC<LoginProps> = () => {
                 <div className="mb-lg-4">
 
                   <div className="form-floating mb-lg-3">
-                    <input type="email" id="email" className="form-control" placeholder="johnadeniyi@mail.com" />
+                    <input onChange={(e) => handleChange('email', e.target.value)} type="email" id="email" className="form-control" placeholder="johnadeniyi@mail.com" />
                     <label htmlFor="email">Email address</label>
                   </div>
 
                   <div className="form-floating mb-lg-3">
-                    <input type="password" id="password" className="form-control" placeholder="**********" />
+                    <input onChange={(e) => handleChange('password', e.target.value)} type="password" id="password" className="form-control" placeholder="**********" />
                     <label htmlFor="password">Password</label>
                   </div>
 
