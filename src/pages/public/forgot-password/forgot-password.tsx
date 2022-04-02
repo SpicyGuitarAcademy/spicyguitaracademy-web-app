@@ -21,13 +21,14 @@ export const ForgotPassword: React.FC<{}> = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const forgetPasswordCredentials = stateToFormData(credentials)
-    forgotPassword(forgetPasswordCredentials)
+    forgotPassword(stateToFormData(credentials))
       .then(resp => {
         if (resp?.status) {
           toast(resp.message)
           
-          replace('/verify-account')
+          replace('/verify-account', {
+            email: credentials.email
+          })
         } else {
           toast(resp.message, undefined, 'danger')
         }
