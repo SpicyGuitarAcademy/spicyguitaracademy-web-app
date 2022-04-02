@@ -16,7 +16,7 @@ export const LoginPage: React.FC<{}> = () => {
   const { signIn } = useAuthStore()
   const { setLoading } = useLoadingModalStore()
   const { toast } = useToastStore()
-  const { push } = useHistory()
+  const { replace } = useHistory()
   const [credentials, setCredentials] = useState<loginCredentials>({
     email: '',
     password: ''
@@ -43,7 +43,7 @@ export const LoginPage: React.FC<{}> = () => {
         }
 
         toast(resp.message)
-        push('/dashboard')
+        replace('/welcome')
       })
   }
 
