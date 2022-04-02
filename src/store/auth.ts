@@ -11,6 +11,9 @@ interface AuthMethods extends State {
   signUp: (
     credentials: FormData
   ) => Promise<any>
+  signIn: (
+    credentials: FormData
+  ) => Promise<any>
 }
 // const { loading, unload } = useLoadingModalStore()
 
@@ -21,7 +24,9 @@ export const useAuthStore = create<AuthState & AuthMethods>(
     signUp: async (credentials) => {
       return await request('/api/register_student', 'POST', credentials)
     },
-    signIn: () => { },
+    signIn: async (credentials) => {
+      return await request('/api/login', 'POST', credentials)
+    },
     persistSignInData: () => { },
     clearPersistedSignInData: () => { },
     signOut: () => { },
