@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 import AppHand from '../../../assets/app_hand.svg'
+import { useAuthStore } from "../../../store/auth"
 
 export const WelcomePage: React.FC<{}> = () => {
+
+  const { student } = useAuthStore()
 
   return (
     <PublicPageWrapper>
@@ -12,7 +15,7 @@ export const WelcomePage: React.FC<{}> = () => {
 
             <div>
 
-              <h1 className='h1 text-primary mb-lg-5'>Hi, Augustine</h1>
+              <h1 className='h1 text-primary mb-lg-5'>Hi, {student?.firstname ?? 'Student'}</h1>
 
               <h1 className='h1 text-primary mb-lg-5 fw-bold'>
                 You are welcome to <br />Spicy Guitar Academy.
@@ -29,7 +32,7 @@ export const WelcomePage: React.FC<{}> = () => {
             </div>
 
             <div className="d-flex flex-column align-items-end">
-              
+
               <img src={AppHand} alt="Spicy Guitar Academy" />
 
               <Link className="btn btn-lg btn-primary my-lg-3" to='/dashboard'>Continue &rarr;</Link>
