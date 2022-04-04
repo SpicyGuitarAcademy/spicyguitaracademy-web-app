@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useAuthStore } from "../../../store/auth"
 import { useToastStore } from "../../../store/toast"
 import { stateToFormData } from "../../../utils"
+import { useLoadingModalStore } from "../../../store/loading-modal"
 
 type verifyAccountCredentials = {
   email: string
@@ -18,25 +19,30 @@ export const VerifyAccount: React.FC<{}> = () => {
     email: locationState.email,
     token: ''
   })
-  const { verifyAccount } = useAuthStore()
+  const { verifyAccount, forgotPassword, student } = useAuthStore()
   const { toast } = useToastStore()
   const { replace } = useHistory()
+  const { setLoading } = useLoadingModalStore()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
+    setLoading(true)
     verifyAccount(stateToFormData(credentials))
       .then(resp => {
-        console.log(resp)
-
+        setLoading(false)
         if (!resp?.status) {
           toast(resp?.message, undefined, 'danger')
         } else {
           toast(resp?.message)
 
-          replace('/reset-password', {
-            email: credentials.email
-          })
+          if (locationState?.forgotPassword) {
+            replace('/reset-password', {
+              email: credentials.email
+            })
+          } else {
+            replace('/welcome')
+          }
         }
       })
   }
@@ -67,8 +73,11 @@ export const VerifyAccount: React.FC<{}> = () => {
                 <div className="mb-lg-3">
                   <button type="submit" className="btn btn-lg btn-primary form-control mb-3">Verify</button>
                   <div className="d-flex justify-content-between">
-                    <span className="">Didn't get the code?<br /><span className="text-decoration-underline cursor-pointer" onClick={() => {
-
+                    <span className="">Didn't get the code?<br /><span className="text-decoration-underline cursor-pointer" onClick={async () => {
+                      forgotPassword(stateToFormData({ email: locationState.email ?? student?.email }))
+                        .then(resp => {
+                          toast(resp?.message)
+                        })
                     }}>Send again</span></span>
                     <span className="">Need assistance?<br /><Link to='/contact-us'>Contact us</Link></span>
                   </div>

@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useAuthStore } from "../../../store/auth"
 import { useToastStore } from "../../../store/toast"
 import { stateToFormData } from "../../../utils"
+import { useLoadingModalStore } from "../../../store/loading-modal"
 
 type resetPasswordCredentials = {
   email: string
@@ -28,21 +29,19 @@ export const ResetPassword: React.FC<{}> = () => {
   const { resetPassword } = useAuthStore()
   const { toast } = useToastStore()
   const { replace } = useHistory()
+  const { setLoading } = useLoadingModalStore()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    setLoading(true)
 
     resetPassword(stateToFormData(credentials))
       .then(resp => {
-        console.log(resp)
+        setLoading(false)
 
-        if (!resp?.status) {
-          setErrors(resp?.data)
-          toast(resp?.message, undefined, 'danger')
-        } else {
-          toast(resp?.message)
-          replace('/login')
-        }
+        toast(resp?.message, undefined, resp?.status ? 'success' : 'danger')
+        if (resp?.status) replace('/login')
+        else setErrors(resp?.data)
       })
   }
 

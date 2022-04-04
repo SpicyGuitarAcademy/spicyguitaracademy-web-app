@@ -13,7 +13,7 @@ type loginCredentials = {
 
 export const LoginPage: React.FC<{}> = () => {
 
-  const { signIn } = useAuthStore()
+  const { student, signIn, verifyDevice } = useAuthStore()
   const { setLoading } = useLoadingModalStore()
   const { toast } = useToastStore()
   const { replace } = useHistory()
@@ -33,7 +33,7 @@ export const LoginPage: React.FC<{}> = () => {
     setLoading(true)
 
     signIn(loginCredentials)
-      .then(resp => {
+      .then(async resp => {
         setLoading(false)
 
         if (!resp.status) {
@@ -43,7 +43,25 @@ export const LoginPage: React.FC<{}> = () => {
         }
 
         toast(resp.message)
-        replace('/welcome')
+
+        const deviceResp = await verifyDevice()
+        if (!deviceResp?.status) {
+          toast(deviceResp?.message, undefined, 'danger')
+          replace('/verify-device')
+        } else {
+
+          // getSubscriptionStatus()
+          // getStudentCategoryAndStats()
+
+          if (resp?.data?.status !== 'active') {
+            replace('/verify-account', {
+              email: student?.email
+            })
+          } else {
+            replace('/welcome')
+          }
+        }
+
       })
   }
 

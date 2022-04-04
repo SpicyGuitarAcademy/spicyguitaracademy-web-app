@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 import { useAuthStore } from "../../../store/auth"
+import { useLoadingModalStore } from "../../../store/loading-modal"
 import { useToastStore } from "../../../store/toast"
 import { stateToFormData } from "../../../utils"
 
@@ -17,16 +18,20 @@ export const ForgotPassword: React.FC<{}> = () => {
   const { forgotPassword } = useAuthStore()
   const { toast } = useToastStore()
   const { replace } = useHistory()
+  const { setLoading } = useLoadingModalStore()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    setLoading(true)
     forgotPassword(stateToFormData(credentials))
       .then(resp => {
+        setLoading(false)
         if (resp?.status) {
           toast(resp.message)
-          
+
           replace('/verify-account', {
+            forgotPassword: true,
             email: credentials.email
           })
         } else {

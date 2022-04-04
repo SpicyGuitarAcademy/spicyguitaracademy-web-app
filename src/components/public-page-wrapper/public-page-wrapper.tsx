@@ -14,7 +14,7 @@ export const PublicPageWrapper: React.FC<PublicPageWrapperProps> = ({ children, 
       <div className={`vh-100 w-100 __page_wrapper ${bgImage ?? ''}`}>
         <header className='vh-lg-20 w-100'>
           <div className='container h-100 w-100 d-flex justify-content-start align-items-center'>
-            <Link to='/welcome'>
+            <Link to='/'>
               <img src={SpicyGuitarLogo} alt="Spicy Guitar Academy" className='__logo' />
             </Link>
           </div>
