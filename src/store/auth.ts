@@ -1,6 +1,7 @@
 import create, { State } from "zustand";
 import { devtools } from "zustand/middleware";
-import { request } from "../utils";
+import { request, stateToFormData } from "../utils";
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
 
 type AuthType = {
   authenticated: boolean
@@ -24,10 +25,11 @@ type StudentType = {
 interface AuthState extends State {
   auth: AuthType | Partial<AuthType>
   student?: StudentType | Partial<StudentType>
+  deviceInfo: string
 }
 
 interface AuthMethods extends State {
-  boot: () => void
+  boot: () => Promise<void>
   signUp: (
     credentials: FormData
   ) => Promise<any>
@@ -48,6 +50,10 @@ interface AuthMethods extends State {
   resetPassword: (
     credentials: FormData
   ) => Promise<any>
+  verifyDevice: () => Promise<any>
+  resetDevice: (
+    credentials: FormData
+  ) => Promise<any>
 }
 
 export const useAuthStore = create<AuthState & AuthMethods>(
@@ -56,19 +62,31 @@ export const useAuthStore = create<AuthState & AuthMethods>(
       authenticated: false
     },
     student: undefined,
-    boot: () => {
+    deviceInfo: '',
+    boot: async () => {
       console.log('booting...')
 
       const savedAuth = JSON.parse(localStorage.getItem('auth') ?? '{}')
       const savedStudent = JSON.parse(localStorage.getItem('student') ?? '{}')
 
+      // get device info
+      const fpPromise = FingerprintJS.load();
+      const deviceInfo = await (async () => {
+        // Get the visitor identifier when you need it.
+        const fp = await fpPromise
+        const result = await fp.get()
+        return result.components?.platform?.value
+      })()
+
       set({
         auth: { ...get().auth, ...savedAuth! },
-        student: { ...get().student, ...savedStudent! }
+        student: { ...get().student, ...savedStudent! },
+        deviceInfo: deviceInfo!
       })
 
       console.log('auth', get().auth)
       console.log('student', get().student)
+      console.log('device', get().deviceInfo)
     },
     signUp: async (credentials) => {
       return await request('/api/register_student', 'POST', credentials)
@@ -95,6 +113,7 @@ export const useAuthStore = create<AuthState & AuthMethods>(
 
     },
     signOut: () => {
+      console.log('Signing out...')
       get().clearPersistedSignInData()
     },
     clearPersistedSignInData: () => {
@@ -119,7 +138,18 @@ export const useAuthStore = create<AuthState & AuthMethods>(
     resetPassword: async (credentials) => {
       return await request('/api/resetpassword', 'POST', credentials)
     },
-    verifyDevice: () => { },
-    resetDevice: () => { },
+    verifyDevice: async () => {
+      return await request('/api/device/verify', 'POST',
+        stateToFormData({ device: get().deviceInfo }),
+        {
+          jwtoken: get().auth?.token
+        }
+      )
+    },
+    resetDevice: async (credentials) => {
+      return await request('/api/device/reset', 'POST', credentials, {
+        jwtoken: get().auth?.token
+      })
+    },
   }))
 )
