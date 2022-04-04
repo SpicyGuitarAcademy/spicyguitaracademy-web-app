@@ -3,7 +3,7 @@ import { ContactUs, ForgotPassword, LandingPage, LoginPage, ReadyToPlay, Registe
 import { WelcomePage as StudentWelcomePage } from './pages/authenticated'
 import { ConfirmModal, LoadingModal, ToastWrapper } from './components';
 import { useLoadingModalStore } from './store/loading-modal';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useAuthStore } from './store/auth';
 
 function App() {
@@ -11,11 +11,16 @@ function App() {
   const { setLoading } = useLoadingModalStore()
   const { boot } = useAuthStore()
 
-  useEffect(() => {
+  const bootApp = useCallback(async () => {
     setLoading(true, "Booting App...")
-    boot()
-    setLoading(false)
-  }, [setLoading, boot])
+    boot().then(_ => {
+      setLoading(false)
+    })
+  }, [boot, setLoading])
+
+  useEffect(() => {
+    bootApp()
+  }, [bootApp])
 
   return (
     <>
