@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { ContactUs, ForgotPassword, LandingPage, LoginPage, ReadyToPlay, RegisterPage, ResetPassword, VerifyAccount, VerifyDevice } from './pages/public';
+import { ContactUs, ErrorPage, ForgotPassword, LandingPage, LoginPage, ReadyToPlay, RegisterPage, ResetPassword, VerifyAccount, VerifyDevice } from './pages/public';
 import { WelcomePage as StudentWelcomePage } from './pages/authenticated'
 import { ConfirmModal, LoadingModal, ToastWrapper } from './components';
 import { useLoadingModalStore } from './store/loading-modal';
@@ -41,6 +41,9 @@ function App() {
 
           {/* Authenticated pages */}
           <Route exact path='/welcome' component={StudentWelcomePage} />
+
+          {/* Error Page */}
+          <Route component={ErrorPage} />
 
         </Switch>
       </BrowserRouter>
