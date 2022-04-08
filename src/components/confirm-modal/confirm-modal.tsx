@@ -1,4 +1,4 @@
-import { useConfirmModalStore } from "../../store/confirm-modal"
+import { useConfirmModalStore } from "../../store"
 
 export const ConfirmModal: React.FC = () => {
 

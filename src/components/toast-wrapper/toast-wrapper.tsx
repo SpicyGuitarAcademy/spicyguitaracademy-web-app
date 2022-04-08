@@ -1,4 +1,4 @@
-import { useToastStore } from "../../store/toast"
+import { useToastStore } from "../../store"
 
 export const ToastWrapper: React.FC = () => {
 

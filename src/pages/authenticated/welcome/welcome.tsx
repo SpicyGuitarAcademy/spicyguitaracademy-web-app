@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
 import AppHand from '../../../assets/app_hand.svg'
-import { useAuthStore } from "../../../store/auth"
+import { useAuthStore } from "../../../store"
 
 export const Welcome: React.FC<{}> = () => {
 

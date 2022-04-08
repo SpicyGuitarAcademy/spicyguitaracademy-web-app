@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
-import { useLoadingModalStore } from "../../../store/loading-modal"
-import { useToastStore } from "../../../store/toast"
+import { useLoadingModalStore, useToastStore } from "../../../store"
 import { request, stateToFormData } from "../../../utils"
 
 type contactUsData = {

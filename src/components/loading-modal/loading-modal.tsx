@@ -1,4 +1,4 @@
-import { useLoadingModalStore } from "../../store/loading-modal"
+import { useLoadingModalStore } from "../../store"
 
 export const LoadingModal: React.FC = () => {
 

@@ -3,8 +3,7 @@
 import { ChevronRight, Columns, Home, LogOut, Mail, MessageSquare, User, Video } from 'react-feather';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import DefaultAvatar from '../../assets/default-avatar.png';
-import { useAuthStore } from '../../store/auth';
-import { useConfirmModalStore } from '../../store/confirm-modal';
+import { useAuthStore, useConfirmModalStore } from '../../store';
 import './style.scss'
 
 interface SideMenuProps {

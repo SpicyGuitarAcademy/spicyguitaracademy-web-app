@@ -2,10 +2,8 @@ import { PublicPageWrapper } from "../../../components"
 import { AlertCircle } from 'react-feather'
 import { useHistory, useLocation } from "react-router-dom"
 import { useState } from "react"
-import { useAuthStore } from "../../../store/auth"
-import { useToastStore } from "../../../store/toast"
+import { useAuthStore, useToastStore, useLoadingModalStore } from "../../../store"
 import { stateToFormData } from "../../../utils"
-import { useLoadingModalStore } from "../../../store/loading-modal"
 
 type resetPasswordCredentials = {
   email: string

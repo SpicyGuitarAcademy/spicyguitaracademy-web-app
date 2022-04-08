@@ -1,7 +1,6 @@
 import { Link, useHistory } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
-import { useAuthStore } from "../../../store/auth"
-import { useLoadingModalStore } from "../../../store/loading-modal"
+import { useAuthStore, useLoadingModalStore } from "../../../store"
 
 export const LandingPage: React.FC<{}> = () => {
 

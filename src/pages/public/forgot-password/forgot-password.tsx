@@ -1,9 +1,7 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { PublicPageWrapper } from "../../../components"
-import { useAuthStore } from "../../../store/auth"
-import { useLoadingModalStore } from "../../../store/loading-modal"
-import { useToastStore } from "../../../store/toast"
+import { useAuthStore, useLoadingModalStore, useToastStore } from "../../../store"
 import { stateToFormData } from "../../../utils"
 
 type forgetPasswordCredentials = {
