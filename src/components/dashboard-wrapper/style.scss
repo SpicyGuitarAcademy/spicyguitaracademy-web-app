@@ -1,5 +1,20 @@
-.__page_wrapper {
-  header > div > a > img.__logo {
-    width: 75px;
+@import "../../theme/theme";
+
+// desktop screen
+@media (min-width: 992px) {
+  main.__body {
+    padding-top: 90px;
+    min-height: 100vh;
+
+    div.__body_wrapper {
+      width: 100%;
+
+      div.__body_content {
+        width: calc(100% - 350px);
+        margin-left: 350px;
+
+        padding: 32px;
+      }
+    }
   }
 }
