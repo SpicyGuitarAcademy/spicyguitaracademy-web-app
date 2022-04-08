@@ -3,7 +3,7 @@ import { PublicPageWrapper } from "../../../components"
 import AppHand from '../../../assets/app_hand.svg'
 import { useAuthStore } from "../../../store/auth"
 
-export const WelcomePage: React.FC<{}> = () => {
+export const Welcome: React.FC<{}> = () => {
 
   const { student } = useAuthStore()
 
