@@ -39,6 +39,8 @@ interface AuthMethods extends State {
   persistSignInData: (
     resp: any
   ) => void
+  getProfile: () => Promise<void>
+  requestReferralCode: () => Promise<void>
   signOut: () => void
   clearPersistedSignInData: () => void
   forgotPassword: (
@@ -112,6 +114,8 @@ export const useAuthStore = create<AuthState & AuthMethods>(
       }
 
     },
+    getProfile: async () => { },
+    requestReferralCode: async () => { },
     signOut: () => {
       console.log('Signing out...')
       get().clearPersistedSignInData()
