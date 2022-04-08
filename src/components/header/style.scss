@@ -1,4 +1,4 @@
-@import '../../theme/_theme.scss';
+@import "../../theme/_theme.scss";
 
 // desktop screen
 @media (min-width: 992px) {
@@ -21,6 +21,18 @@
     div.__search_wrapper {
       form > div > input.__search_input {
         width: 400px;
+        &:focus {
+          outline: none !important;
+          box-shadow: none !important;
+        }
+        &::placeholder {
+          color: $primary;
+        }
+        &::after {
+          &::content {
+            color: $primary !important;
+          }
+        }
       }
     }
 

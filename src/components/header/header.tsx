@@ -17,8 +17,8 @@ export const Header: React.FC<HeaderProps> = () => {
   }
 
   return (
-    <header className='bg-secondary'>
-      <div className='container-lg h-100 d-flex justify-content-between align-items-center'>
+    <header className='bg-secondary position-fixed'>
+      <div className='container-lg px-lg-5 h-100 d-flex justify-content-between align-items-center'>
 
         <div className='__logo_wrapper'>
           <Link to='/'>
