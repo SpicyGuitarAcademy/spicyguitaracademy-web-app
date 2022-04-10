@@ -1,6 +1,6 @@
 import { Bell, Search } from 'react-feather';
 import { Link } from 'react-router-dom';
-import SpicyGuitarLogo from '../../assets/spicyguitaracademy_logo.svg';
+import SpicyGuitarLogo from '../../assets/spicyguitaracademy-logo.svg';
 import DefaultAvatar from '../../assets/default-avatar.png';
 import './style.scss'
 

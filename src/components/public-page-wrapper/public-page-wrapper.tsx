@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SpicyGuitarLogo from '../../assets/spicyguitaracademy_logo.svg';
+import SpicyGuitarLogo from '../../assets/spicyguitaracademy-logo.svg';
 import './style.scss'
 
 interface PublicPageWrapperProps {
