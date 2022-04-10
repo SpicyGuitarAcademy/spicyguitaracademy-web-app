@@ -25,6 +25,7 @@
     div.__navigation {
       ul > li.__route {
         &:hover {
+          border-color: $cream !important;
           background-color: $cream;
           transition: all 0.7s ease-out;
         }

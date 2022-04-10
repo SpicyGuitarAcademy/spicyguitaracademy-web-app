@@ -1,5 +1,3 @@
-// import { Bell, Search } from 'react-feather';
-// import { Link } from 'react-router-dom';
 import { ChevronRight, Columns, Home, LogOut, Mail, MessageSquare, User, Video } from 'react-feather';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import DefaultAvatar from '../../assets/default-avatar.png';
