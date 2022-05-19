@@ -2,7 +2,7 @@ import create, { State } from "zustand";
 import { persist } from "zustand/middleware";
 import { authToken, request, uniqueAppID } from "../utils";
 import { useAuthStore } from ".";
-import { useCourseStore, useStudentStatsStore } from ".";
+import { useCourseStore } from ".";
 
 export type StudentSubscription = {
   days: number
@@ -233,7 +233,10 @@ export const useSubscriptionStore = create<SubscriptionState & SubscriptionMetho
                   status: true
                 }
               })
+
+              await useCourseStore.getState().getBoughtCourses()
               await useCourseStore.getState().getFeaturedCourses()
+              return resp
             } else {
               set({
                 payment: {
@@ -241,8 +244,8 @@ export const useSubscriptionStore = create<SubscriptionState & SubscriptionMetho
                   status: false
                 }
               })
+              return resp
             }
-            return resp
           })
       },
       completeSubscriptionPaymentWithSpicyUnits: async (credentials) => {

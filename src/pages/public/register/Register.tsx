@@ -18,6 +18,7 @@ type regsterCredentials = {
 
 export const Register: React.FC<{}> = () => {
 
+  const query = urlQuery()
   const { signUp } = useAuthStore()
   const [credentials, setCredentials] = useState<regsterCredentials>({
     firstname: '',
@@ -26,7 +27,7 @@ export const Register: React.FC<{}> = () => {
     password: '',
     cpassword: '',
     telephone: '',
-    referral_code: ''
+    referral_code: query.ref!
   })
   const [errors, setErrors] = useState<regsterCredentials>({
     firstname: '',
@@ -41,9 +42,8 @@ export const Register: React.FC<{}> = () => {
   const { loading, toast } = useModalStore()
   const { replace } = useHistory()
   const [showPassword, setShowPassword] = useState(false)
-  const toggleShowPassword = () => setShowPassword(!showPassword)
 
-  const query = urlQuery()
+  const toggleShowPassword = () => setShowPassword(!showPassword)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -160,7 +160,7 @@ export const Register: React.FC<{}> = () => {
                       <label htmlFor="inviteCode">Invite code (optional)</label>
                     </div>
 
-                    <div className="mb-2 mb-md-3 d-flex justify-content-start align-items-start gap-2">
+                    <div className="mb-2 mb-md-3 d-flex justify-content-start align-items-start gap-1 gap-md-2">
                       <input onChange={(e) => setAcceptTC(e.target.checked)} type="checkbox" id="agreedToTermsAndConditions" className="form-check-input text-primary" />
                       <label htmlFor="agreedToTermsAndConditions" className="">I have carefully read and agreed to the <a target='__blank' className="text-primary" href='https://spicyguitaracademy.com/terms'>Terms and Conditions</a></label>
                     </div>

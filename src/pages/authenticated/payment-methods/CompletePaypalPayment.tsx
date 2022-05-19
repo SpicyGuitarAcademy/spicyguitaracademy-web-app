@@ -1,5 +1,5 @@
 import { DashboardWrapper } from "../../../components"
-import { useSubscriptionStore, useModalStore } from "../../../store"
+import { useSubscriptionStore, useModalStore, useStudentStatsStore } from "../../../store"
 import { useHistory, useLocation } from "react-router-dom";
 import { ArrowLeft } from "react-feather";
 import './style.scss'
@@ -13,6 +13,7 @@ export const CompletePaymentWithPaypal: React.FC<{}> = () => {
   const { verifiedFeaturedPayment, verifiedSubscriptionPayment } = useSubscriptionStore()
   const { goBack, push } = useHistory()
   const { loading, toast } = useModalStore()
+  const { studentStats } = useStudentStatsStore()
 
   const { state } = useLocation<{
     paymentFor: 'subscription' | 'featured-course'
@@ -46,7 +47,9 @@ export const CompletePaymentWithPaypal: React.FC<{}> = () => {
           loading(false)
           if (resp.status === true) {
             toast(resp.message)
-            push('/dashboard')
+            if (studentStats.category === 0)
+              push('/dashboard/profile/category')
+            else push('/dashboard/courses')
           } else {
             toast(resp.message, undefined, 'danger')
           }
@@ -89,7 +92,7 @@ export const CompletePaymentWithPaypal: React.FC<{}> = () => {
               "client-id": process.env.NODE_ENV === 'production'
                 ? process.env.REACT_APP_PAYPAL_CLIENT_ID!
                 : process.env.REACT_APP_PAYPAL_CLIENT_ID_TEST!,
-              "data-client-token": paypalConfig.id
+              // "data-client-token": paypalConfig.id
               // "intent": 
             }}>
             <PayPalButtons

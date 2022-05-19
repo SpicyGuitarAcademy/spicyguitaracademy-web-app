@@ -10,7 +10,7 @@ export const Subscription: React.FC<{}> = () => {
 
   const { studentSubscription, subscriptionPlans } = useSubscriptionStore()
   const { goBack, push } = useHistory()
-  const [selectedPlan, setSelectedPlan] = useState<number>()
+  const [selectedPlan, setSelectedPlan] = useState<number>(0)
   const { toast } = useModalStore()
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const Subscription: React.FC<{}> = () => {
 
   const handleDoneClicked = async () => {
 
-    if (selectedPlan === undefined) {
+    if (selectedPlan === 0) {
       toast('Please select a Plan', undefined, 'danger')
       return
     }
@@ -94,7 +94,9 @@ export const Subscription: React.FC<{}> = () => {
 
             {
               studentSubscription.status === false &&
-              <button onClick={handleDoneClicked} type="submit" className={`btn btn-lg shadow-sm ${selectedPlan !== undefined ? 'btn-primary' : 'bg-white text-primary'} form-control mb-3 d-flex align-items-center justify-content-center gap-2`}>
+              <button disabled={selectedPlan === 0}
+                onClick={handleDoneClicked} type="submit"
+                className={`btn btn-lg shadow-sm btn-primary form-control mb-3 d-flex align-items-center justify-content-center gap-2`}>
                 <span>Payment Methods</span>
                 <ArrowRight size={24} />
               </button>

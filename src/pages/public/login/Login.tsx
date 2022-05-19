@@ -13,7 +13,7 @@ type loginCredentials = {
 
 export const Login: React.FC<{}> = () => {
 
-  const { student, signIn, verifyDevice } = useAuthStore()
+  const { signIn, verifyDevice } = useAuthStore()
   const { loading, toast } = useModalStore()
   const { replace } = useHistory()
   const [credentials, setCredentials] = useState<loginCredentials>({
@@ -51,11 +51,9 @@ export const Login: React.FC<{}> = () => {
           toast(deviceResp?.message, undefined, 'danger')
           replace('/verify-device')
         } else {
-          // kuiwet.com
-
           if (resp?.data?.status !== 'active') {
             replace('/verify-account', {
-              email: student?.email
+              email: useAuthStore.getState().student?.email
             })
           } else {
             replace('/welcome')

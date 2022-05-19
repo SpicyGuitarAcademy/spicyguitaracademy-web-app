@@ -63,7 +63,12 @@ export const StudyingCourses: React.FC<{}> = () => {
                   studyingCourses?.map((item, index) => (
                     <CourseItem item={item} isBought={false} isFeatured={false} showProgress={true} clickable={true} key={index} />
                   ))
-                  : <div>No Courses</div>
+                  : studentStats.category === 0 ?
+                    <div>
+                      Choose a studying category <br />
+                      <Link to='/dashboard/profile/category' className="btn btn-primary">Choose Category</Link>
+                    </div>
+                    : <div>No Courses</div>
                 : <div>
                   Choose a subscription plan <br />
                   <Link to='/dashboard/profile/subscription' className="btn btn-primary">Subscribe</Link>
