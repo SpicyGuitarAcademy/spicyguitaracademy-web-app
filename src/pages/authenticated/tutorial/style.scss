@@ -1,0 +1,49 @@
+@import "../../../theme/theme";
+
+// desktop screen
+@media (min-width: 992px) {
+  div.__tutorial_page {
+    width: 100%;
+
+    div.__tutorial_content_wrapper {
+      // height: 300px;
+      width: 100%;
+
+      video.__lesson_video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      iframe.__lesson_tablature {
+        // height: 100%;
+        min-height: 700px;
+        width: 100%;
+        // object-fit: cover;
+      }
+
+      @media (min-width: 992px) {
+        iframe.__lesson_tablature {
+          height: 100%;
+          min-height: 500px;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    div.__comment_input_wrapper {
+      div.__comment_input {
+        width: calc(100% - 24px);
+      }
+    }
+
+    @media (min-width: 992px) {
+      div.__comment_input_wrapper {
+        div.__comment_input {
+          width: calc(100% - 438px) !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import "../../../theme/theme";
+
+div.__profile_page {
+  width: 100%;
+
+  div.__methods {
+    button.__method {
+      div.__spicy_units > div.__spicy_unit_icon_wrapper {
+        height: 24px;
+        width: 24px;
+        
+        img.__spicy_unit_icon {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      div.__paypal_paystack > div.__icon_wrapper {
+        height: 24px;
+        
+        img.__icon {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

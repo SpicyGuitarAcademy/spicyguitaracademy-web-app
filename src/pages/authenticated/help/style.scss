@@ -1,0 +1,19 @@
+@import "../../../theme/theme";
+
+div.__studying_course_page {
+  width: 100%;
+
+  div.__comment_input_wrapper {
+    div.__comment_input {
+      width: calc(100% - 24px);
+    }
+  }
+
+  @media (min-width: 992px) {
+    div.__comment_input_wrapper {
+      div.__comment_input {
+        width: calc(100% - 438px) !important;
+      }
+    }
+  }
+}

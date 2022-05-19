@@ -1,0 +1,40 @@
+@import "../../../theme/theme";
+
+div.__studying_course_page {
+  width: 100%;
+
+  div.__category_image_wrapper {
+    height: 150px;
+    width: 100%;
+
+    @media (min-width: 992px) {
+      height: 300px;
+      width: 100%;
+    }
+
+    img.__category_image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  div.__spicy_units_wrapper
+    > div.__spicy_units
+    > div.__spicy_unit_icon_wrapper {
+    height: 24px;
+    width: 24px;
+
+    img.__spicy_unit_icon {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // div.__free_lessons_wrapper {
+  //   div.__free_lessons {
+      
+  //   }
+  // }
+}

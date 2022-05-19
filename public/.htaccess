@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+
+  # Turn on the RewriteEngine
+    RewriteEngine On
+
+  # Redirect Port 80 to 443
+    RewriteCond %{SERVER_PORT} 80
+    RewriteRule ^(.*)$ https://app.spicyguitaracademy.com/$1 [R,L]
+   
+  # Prevent directory listings
+    # Options All -Indexes
+    
+  # Redirect all routes to index.html
+      RewriteBase /
+      RewriteRule ^index\.html$ - [L]
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteCond %{REQUEST_FILENAME} !-l
+      RewriteRule . /index.html [L]
+
+</IfModule>

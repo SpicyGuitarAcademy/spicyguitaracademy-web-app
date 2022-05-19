@@ -1,0 +1,86 @@
+@import "../../theme/_theme.scss";
+
+header {
+  height: 70px;
+  padding: 4px;
+  width: 100%;
+  z-index: 99;
+
+  @media (min-width: 992px) {
+    height: 90px;
+    padding: 8px;
+  }
+
+  div.__logo_wrapper {
+    height: 100%;
+    width: 40px;
+
+    @media (min-width: 992px) {
+      height: 100%;
+      width: 70px;
+    }
+
+    img.__logo {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  div.__search_wrapper {
+    form > div {
+      width: 90%;
+
+      @media (min-width: 992px) {
+        // max-width: 400px;
+        width: 400px;
+      }
+
+      input.__search_input {
+        &:focus {
+          outline: none !important;
+          box-shadow: none !important;
+        }
+        &::placeholder {
+          color: $primary;
+        }
+        &::after {
+          &::content {
+            color: $primary !important;
+          }
+        }
+      }
+    }
+  }
+
+  div.__header_actions {
+    div.__notification_wrapper {
+      span.__notification_count_tag {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        font-size: x-small;
+
+        top: -5px !important;
+      }
+    }
+
+    div.__avatar_wrapper {
+      height: 32px !important;
+      width: 32px !important;
+
+      img.__avatar {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+nav.__menu {
+  margin-top: 70px;
+  height: calc(100% - 70px);
+  width: 100%;
+}
