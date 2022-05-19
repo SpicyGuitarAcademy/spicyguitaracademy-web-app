@@ -1,19 +1,19 @@
-import { useToastStore } from "../../store"
+import { useModalStore } from "../../store"
 
 export const ToastWrapper: React.FC = () => {
 
-  const { toasts } = useToastStore()
+  const { toastList } = useModalStore()
 
   return (
     <>
 
       <div className="sticky-top">
 
-        <div style={{ zIndex: '9999' }} className={`toast-container position-absolute top-0 end-0 ${toasts.length > 0 && 'p-3 vh-100 overflow-hidden'}`}>
+        <div style={{ zIndex: '9999' }} className={`toast-container position-absolute top-0 end-0 ${toastList.length > 0 && 'p-3 vh-100 overflow-hidden'}`}>
 
           {
-            toasts.length > 0 &&
-            toasts.map(toast => (
+            toastList.length > 0 &&
+            toastList.map(toast => (
 
               <div key={toast.id} className="toast show align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
                 <div className={`bg-${toast.color} pt-1`}></div>

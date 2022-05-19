@@ -1,18 +1,35 @@
 @import "../../theme/theme";
 
 // desktop screen
-@media (min-width: 992px) {
-  main.__body {
+main.__body {
+  padding-top: 70px;
+  min-height: 100vh;
+
+  @media (min-width: 992px) {
     padding-top: 90px;
     min-height: 100vh;
+  }
 
-    div.__body_wrapper {
+  div.__body_wrapper {
+    width: 100%;
+
+    div.__body_content {
       width: 100%;
+      margin-left: 0px;
 
-      div.__body_content {
+      @media (min-width: 992px) {
         width: calc(100% - 350px);
         margin-left: 350px;
+      }
 
+      &.__confetti {
+        background-image: url("../../assets/confetti2.gif") !important;
+        background-repeat: repeat;
+        background-origin: content-box;
+      }
+
+      padding: 16px 0px;
+      @media (min-width: 992px) {
         padding: 32px;
       }
     }

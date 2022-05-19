@@ -1,33 +1,40 @@
-@import '../../theme/theme';
+@import "../../theme/theme";
 
-// desktop screen
-@media (min-width: 992px) {
-  nav.__side_menu_wrapper {
-    // margin-top: 90px;
+nav.__side_menu_wrapper {
+  height: calc(100% - 70px);
+  width: 100%;
+  overflow-y: auto;
+  z-index: 99;
+
+  @media (min-width: 992px) {
     height: calc(100% - 90px);
     width: 350px;
+  }
 
-    box-shadow: 2px 0 5px -5px $dark;
-    padding: 16px;
+  box-shadow: 2px 0 5px -5px $dark;
+  padding: 16px;
 
-    div.__avatar_wrapper {
-      height: 150px;
-      width: 150px;
+  div.__avatar_wrapper {
+    height: 150px;
+    width: 150px;
 
-      img.__avatar {
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-        border-radius: 50%;
-      }
+    img.__avatar {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 50%;
     }
+  }
 
-    div.__navigation {
-      ul > li.__route {
-        &:hover {
-          border-color: $cream !important;
-          background-color: $cream;
-          transition: all 0.7s ease-out;
+  div.__navigation {
+    ul > li.__route {
+      &:hover {
+        border-color: $cream !important;
+        background-color: $cream;
+        transition: all 0.7s ease-out;
+
+        &.__active {
+          border-color: unset !important;
         }
       }
     }

@@ -1,0 +1,20 @@
+div.__chat {
+  &:last-of-type {
+    margin-bottom: 20px !important;
+  }
+}
+
+div.__comment {
+  img.__image {
+    max-height: 400px;
+    object-fit: contain;
+  }
+  audio.__audio {
+    max-height: 400px;
+    object-fit: contain;
+  }
+  video.__video {
+    max-height: 400px;
+    object-fit: contain;
+  }
+}

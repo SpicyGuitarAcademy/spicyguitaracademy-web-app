@@ -1,8 +1,8 @@
-import { useConfirmModalStore } from "../../store"
+import { useModalStore } from "../../store"
 
 export const ConfirmModal: React.FC = () => {
 
-  const { modal } = useConfirmModalStore()
+  const { confirmProps } = useModalStore()
 
   return (
     <>
@@ -19,9 +19,13 @@ export const ConfirmModal: React.FC = () => {
 
               <div className="d-flex align-items-start mb-4">
 
-                <div className="w-100 text-primary">{modal?.message}</div>
+                <div className="w-100 text-primary">{confirmProps?.message}</div>
 
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                <button type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                />
 
               </div>
 
@@ -30,17 +34,18 @@ export const ConfirmModal: React.FC = () => {
                 <button type="button"
                   className="ms-2 btn btn-sm btn-secondary"
                   data-bs-dismiss="modal"
-                  onClick={() => modal?.onCancel!()}
+                  onClick={() => confirmProps?.onCancel!()}
                 >
-                  {modal?.cancelText ?? 'No'}
+                  {confirmProps?.cancelText ?? 'No'}
                 </button>
 
                 <button type="button"
+                  id="__confirm_modal_confirm_btn"
                   className="ms-2 btn btn-sm btn-primary"
                   data-bs-dismiss="modal"
-                  onClick={() => modal?.onConfirm!()}
+                  onClick={() => confirmProps?.onConfirm!()}
                 >
-                  {modal?.confirmText ?? 'Confirm'}
+                  {confirmProps?.confirmText ?? 'Confirm'}
                 </button>
 
               </div>

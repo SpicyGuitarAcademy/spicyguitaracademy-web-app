@@ -1,0 +1,23 @@
+@import "../../theme/theme";
+
+div.__assignment_item {
+  min-width: 30%;
+  border-radius: 0.25rem !important;
+
+  svg.__fill {
+    fill: $primary !important;
+  }
+
+  div.__thumbnail {
+    height: 150px;
+    width: 100%;
+    min-height: 150px;
+    min-width: 250px;
+    z-index: 1;
+
+    &:hover {
+      box-shadow: 0 0.125rem 0.25rem $grey !important;
+    }
+  }
+
+}
