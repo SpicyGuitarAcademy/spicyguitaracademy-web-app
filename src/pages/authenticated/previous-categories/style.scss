@@ -1,0 +1,17 @@
+@import "../../../theme/theme";
+
+div.__profile_page {
+  width: 100%;
+
+  div.__avatar_wrapper {
+    height: 200px;
+    width: 200px;
+
+    img.__avatar {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+  }
+}
