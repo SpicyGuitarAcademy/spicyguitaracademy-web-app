@@ -44,7 +44,7 @@ export const SideMenu: React.FC<SideMenuProps> = () => {
     },
     {
       icon: <Video size={24} />,
-      title: 'Featured', route: '/dashboard/courses/bought',
+      title: 'Buy Courses', route: '/dashboard/courses/bought',
       indicateFor: [
         '/dashboard/courses/bought',
         '/dashboard/courses/featured',

@@ -43,7 +43,7 @@ export const QuestionAnswerTile: React.FC<{
               }
               {
                 item?.type === 'audio' &&
-                <audio controls controlsList="nodownload" className="w-100 __audio" src={`${baseUrl}/${item?.content}`} />
+                <audio controls controlsList={isAdmin ? '' : 'nodownload'} className="w-100 __audio" src={`${baseUrl}/${item?.content}`} />
               }
               {
                 item?.type === 'video' &&

@@ -42,6 +42,9 @@ interface CourseMethods extends State {
   getStudyingCourses: () => Promise<void>
   getStudyingCoursesFromPreviousCategory: (category: number) => Promise<void>
   getFeaturedCourses: () => Promise<void>
+  getAFeaturedCourse: (
+    courseId: number
+  ) => Promise<any>
   getBoughtCourses: () => Promise<void>
   activateCourse: (
     credentials: FormData
@@ -259,6 +262,33 @@ export const useCourseStore = create<CourseState & CourseMethods>(
                 ))
               })
             }
+          })
+      },
+      getAFeaturedCourse: async (courseId) => {
+        return await request('/api/student/featuredcourses/' + courseId, 'GET')
+          .then(resp => {
+            if (resp.status) {
+              set({
+                selectedCourse:
+                {
+                  ...resp?.data,
+                  course: decodeEntities(resp?.data?.course),
+                  description: decodeEntities(resp?.data?.description),
+                  active: resp?.data?.active === '1',
+                  category: parseInt(resp?.data?.category),
+                  done: parseInt(resp?.data?.done),
+                  featured: resp?.data?.featured === '1',
+                  featured_order: parseInt(resp?.data?.featured_order),
+                  featuredprice: parseInt(resp?.data?.featuredprice),
+                  id: parseInt(resp?.data?.id),
+                  lessons: parseInt(resp?.data?.lessons),
+                  ord: parseInt(resp?.data?.ord),
+                  total: parseInt(resp?.data?.total),
+                }
+              })
+            }
+
+            return resp
           })
       },
       getBoughtCourses: async () => {

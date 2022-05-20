@@ -47,3 +47,18 @@
     }
   }
 }
+
+span.__invite_link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+div.__share_btns {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translate(-10%, -50%) !important;
+}

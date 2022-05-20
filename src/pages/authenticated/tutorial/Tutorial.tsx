@@ -1,15 +1,16 @@
 import { CommentTile, DashboardWrapper } from "../../../components"
-import { useCourseStore, useLessonStore, useModalStore, useTutorialStore } from "../../../store"
+import { useAuthStore, useCourseStore, useLessonStore, useModalStore, useTutorialStore } from "../../../store"
 import { useHistory, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { baseUrl, stateToFormData } from "../../../utils";
-import { ArrowLeft, Send } from "react-feather";
+import { baseUrl, domain, stateToFormData } from "../../../utils";
+import { ArrowLeft, Copy, Send, Share2 } from "react-feather";
 import PlayingAudio from '../../../assets/playing-audio.svg'
 import './style.scss'
 
 export const Tutorial: React.FC<{}> = () => {
 
   const { goBack, push } = useHistory()
+  const { student } = useAuthStore()
   const { activateLesson, activateFeaturedLesson } = useLessonStore()
   const { selectedCourse, sortCoursesByOrder } = useCourseStore()
   const { submitComment, getTutorialComments, setCurrentTutorial, tutorialComments, currentTutorial, tutorialLessons } = useTutorialStore()
@@ -99,6 +100,29 @@ export const Tutorial: React.FC<{}> = () => {
       })
   }
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(
+      "Learn Guitar With Spicy Guitar Academy.\n\n" +
+      "Spicy Guitar Academy is aimed at guiding beginners to fulfill their dream of becoming professional guitar players.\n\n" +
+      "Join with the link below\n" +
+      `${domain}/featured/${selectedCourse?.id}?ref=${student?.referral_code}`
+    )
+
+    toast("Copied", undefined, 'success')
+  }
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        url: `${domain}/featured/${selectedCourse?.id}?ref=${student?.referral_code}`,
+        title: 'Learn Guitar With Spicy Guitar Academy',
+        text: 'Spicy Guitar Academy is aimed at guiding beginners to fulfill their dream of becoming professional guitar players.'
+      })
+    } else {
+      toast("Web share is currently not supported on this browser.", undefined, 'danger')
+    }
+  }
+
   return (
     <DashboardWrapper>
       <div className="__tutorial_page position-re lative pb-md-5">
@@ -179,6 +203,23 @@ export const Tutorial: React.FC<{}> = () => {
                   : <span className="p-1" />
           }
         </div>
+
+        {
+          state.isBought === true &&
+          <div className="mb-5">
+            <p>Hi <b>{student.firstname}</b>, Share this featured course with your friends if you're enjoying it.</p>
+
+            <div className="position-relative rounded-pill bg-cream my-2 p-3">
+              <span className="__invite_link">{domain}/featured/{selectedCourse?.id}?ref={student?.referral_code}</span>
+
+              <div className="__share_btns d-flex gap-1 gap-md-2">
+                <button onClick={handleCopy} className="btn btn-cream shadow-sm text-primary rounded-pill"><Copy size={20} /></button>
+                <button onClick={handleShare} className="btn btn-cream shadow-sm text-primary rounded-pill"><Share2 size={20} /></button>
+              </div>
+
+            </div>
+          </div>
+        }
 
         <div className="__comments mb-5 text-dark w-100">
           <h5 className="text-primary fw-bold mb-3">Comments</h5>

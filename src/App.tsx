@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { ContactUs, ErrorPage, ForgotPassword, LandingPage, Login, Register, ResetPassword, VerifyAccount, VerifyDevice } from './pages/public';
+import { ContactUs, ErrorPage, ForgotPassword, LandingPage, Login, Register, ResetPassword, SharedFeaturedCourse, VerifyAccount, VerifyDevice } from './pages/public';
 import { Welcome, Home, StudyingCourses, AllCourses, CourseLessons, Tutorial, FeaturedCourses, BoughtCourses, CourseDetails, Forum, Notification, Profile, EditProfile, EditPassword, InviteFriend, Category, PreviousCategories, Subscription, PaymentMethods, BuyMoreUnits, SearchCourses, Help, CourseAssignments, AssignmentQuestion, CompletedCourse, CompletePaymentWithPaystack, CompletePaymentWithPaypal } from './pages/authenticated'
 import { ConfirmModal, DynamicModal, LoadingModal, ToastWrapper } from './components';
 import { useCallback, useEffect } from 'react';
@@ -37,6 +37,7 @@ function App() {
           <Route exact path='/reset-password' component={ResetPassword} />
           <Route exact path='/verify-device' component={VerifyDevice} />
           <Route exact path='/contact-us' component={ContactUs} />
+          <Route exact path='/featured/:id' component={SharedFeaturedCourse} />
 
           {/* Authenticated pages */}
           <Route exact path='/welcome' component={Welcome} />
