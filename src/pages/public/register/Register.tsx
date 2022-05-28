@@ -27,7 +27,7 @@ export const Register: React.FC<{}> = () => {
     password: '',
     cpassword: '',
     telephone: '',
-    referral_code: query.ref!
+    referral_code: query.ref! ?? ''
   })
   const [errors, setErrors] = useState<regsterCredentials>({
     firstname: '',
