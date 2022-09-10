@@ -58,7 +58,7 @@ export const LessonItem: React.FC<LessonItemProps> = ({ item, clickable, showOrd
   return (
     <div className={`__item h-100 col-12 col-md-6 ${isFromLandingPage === false ? 'col-lg-4' : 'col-lg-3'} p-1 h-100`}>
       <div onClick={handleLessonClicked} className="__item_content h-100 mb-2 mb-lg-3 bg-light cursor-pointer text-decoration-none">
-        <div className={`__thumbnail ${isFromLandingPage === false && 'mb-2'} position-relative`}>
+        <div className={`__thumbnail ${isFromLandingPage === true && '__landing'} ${isFromLandingPage === false && 'mb-2'} position-relative`}>
           <img className="rounded border border-grey shadow-sm" src={`${baseUrl}/${item?.thumbnail}`} alt="Lesson Thumbnail" />
           {
             isFromLandingPage === false ?

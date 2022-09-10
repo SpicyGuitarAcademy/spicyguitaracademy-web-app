@@ -11,17 +11,26 @@ export const LandingPage: React.FC<{}> = () => {
   const { replace } = useHistory()
   const { loading } = useModalStore()
   const { getFeaturedCourses } = useCourseStore()
-  const { getFreeLessons } = useLessonStore()
+  const { getAllLessons } = useLessonStore()
+
+  const getRandomLessons = () => {
+    if (useLessonStore.getState().allLessons.length > 50) {
+      let rand = Math.floor((Math.random() * (useLessonStore.getState().allLessons.length - 50)) + 1);
+      return useLessonStore.getState().allLessons.slice(rand, rand + 50)
+    } else {
+      return useLessonStore.getState().allLessons
+    }
+  }
 
   useEffect(() => {
     getFeaturedCourses()
-    getFreeLessons()
-  }, [getFeaturedCourses, getFreeLessons])
+    getAllLessons()
+  }, [getFeaturedCourses, getAllLessons])
 
   const handleLogout = async () => {
     signOut()
     getFeaturedCourses()
-    getFreeLessons()
+    getAllLessons()
   }
 
   const handleContinueAsStudent = async () => {
@@ -94,8 +103,8 @@ export const LandingPage: React.FC<{}> = () => {
               <h3 className="text-cream fw-bold">Lessons</h3>
               <div className="w-100 overflow-auto d-flex justify-content-start align-items-start">
                 {
-                  useLessonStore.getState().freeLessons.length > 0 ?
-                    useLessonStore.getState().freeLessons.map((course, index) => (
+                  getRandomLessons().length > 0 ?
+                    getRandomLessons().map((course, index) => (
                       <LessonItem key={index} showOrder={false} isFromLandingPage={true} isFromLandingPageHandler={handleContinueAsStudent} fromFreeLessons={true} tutorialLessons={[]} item={course} isBought={false} clickable={false} />
                     ))
                     : 'Loading...'

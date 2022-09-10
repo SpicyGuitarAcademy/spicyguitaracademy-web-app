@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { ContactUs, ErrorPage, ForgotPassword, LandingPage, Login, Register, ResetPassword, SharedFeaturedCourse, VerifyAccount, VerifyDevice } from './pages/public';
-import { Welcome, Home, StudyingCourses, AllCourses, CourseLessons, Tutorial, FeaturedCourses, BoughtCourses, CourseDetails, Forum, Notification, Profile, EditProfile, EditPassword, InviteFriend, Category, PreviousCategories, Subscription, PaymentMethods, BuyMoreUnits, SearchCourses, Help, CourseAssignments, AssignmentQuestion, CompletedCourse, CompletePaymentWithPaystack, CompletePaymentWithPaypal } from './pages/authenticated'
+import { Welcome, Home, StudyingCourses, AllCourses, CourseLessons, Tutorial, FeaturedCourses, BoughtCourses, CourseDetails, Forum, Notification, Profile, EditProfile, EditPassword, InviteFriend, Category, PreviousCategories, Subscription, PaymentMethods, BuyMoreUnits, SearchCourses, Help, CourseAssignments, AssignmentQuestion, CompletedCourse, CompletePaymentWithPaystack, CompletePaymentWithPaypal, CashOutUnits } from './pages/authenticated'
 import { ConfirmModal, DynamicModal, LoadingModal, ToastWrapper } from './components';
 import { useCallback, useEffect } from 'react';
 import { useModalStore } from './store';
@@ -67,6 +67,7 @@ function App() {
           <Route exact path='/dashboard/payment/paystack/complete' component={CompletePaymentWithPaystack} />
           <Route exact path='/dashboard/payment/paypal/complete' component={CompletePaymentWithPaypal} />
           <Route exact path='/dashboard/payment/spicyunits' component={BuyMoreUnits} />
+          <Route exact path='/dashboard/payment/spicyunits/cashout' component={CashOutUnits} />
 
           {/* Error Page */}
           <Route component={ErrorPage} />
